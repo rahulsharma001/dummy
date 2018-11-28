@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:keshaa_android/Pages/backdrop.dart';
 import '../Pages/homescreen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   _startTimedNavigation(){
     Timer(Duration(seconds: 3),(){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(),),);
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BackDrop(),),);
 
     });
   }
