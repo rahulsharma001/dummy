@@ -58,21 +58,25 @@ class _PanelClassState extends State<PanelClass> {
                 Material(
               // elevation: 16.0,
               shape: BeveledRectangleBorder(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(20.0),topRight: Radius.circular(20.0)),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0)),
               ),
               child: Column(
                 children: <Widget>[
-                  // Container(
-                  //   height: header_height,
-                  //   child: Text('Front Panels AppBar'),
-                  // ),
+                  widget.controller.isDismissed
+                      ? Container(
+                          height: header_height,
+                          child: Text('Gallery'),
+                        )
+                      : Container(),
                   Expanded(
                     // child: Container(
                     //   child: Center(
                     //     child: Text('Worked'),
                     //   ),
                     // ),)
-                    child: FrontLayer(child:widget.frontLayer),
+                    child: FrontLayer(child: widget.frontLayer),
                   ),
                 ],
               ),
@@ -81,6 +85,12 @@ class _PanelClassState extends State<PanelClass> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
   }
 
   @override
