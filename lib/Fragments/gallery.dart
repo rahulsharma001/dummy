@@ -20,9 +20,11 @@ class _GalleryGridState extends State<GalleryGrid>
 
   Future<List<GalleryModel>> fetchPost() async {
     final response =
-        await http.get("https://jsonplaceholder.typicode.com/photos");
+        await http.get("http://192.168.0.103/dummy_cms/public/api/getImages");
     if (response.statusCode == 200) {
       var datas = json.decode(response.body);
+      // var datas=body['data'];
+      print(datas.toString());
       lists = (datas as List)
           .map((data) => new GalleryModel.fromJson(data))
           .toList();
@@ -118,7 +120,7 @@ class _GridWidgetState extends State<GridWidget> with TickerProviderStateMixin {
           child: Container(
             child: InkWell(
               child: GridTile(
-                  child: Image.network(widget.lists[index].thumbnailUrl)),
+                  child: Image.network(widget.lists[index].imageUrl)),
               onTap: () {
                 _controller.forward();
                 Navigator.push(
@@ -130,7 +132,7 @@ class _GridWidgetState extends State<GridWidget> with TickerProviderStateMixin {
                       content: Hero(
                           tag: 'hero1',
                           child: CustomLogo(
-                            imageUrl: widget.lists[index].thumbnailUrl,
+                            imageUrl: widget.lists[index].imageUrl,
                             // size: 500.0,
                           )),
                     );
