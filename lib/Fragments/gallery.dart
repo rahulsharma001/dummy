@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:keshaa_android/Models/gallerymodel.dart';
 import 'package:http/http.dart' as http;
@@ -33,6 +32,7 @@ class _GalleryGridState extends State<GalleryGrid>
     } else {
       // throw Exception("Failed to load photos");
     }
+    return lists;
   }
 
   @override
@@ -85,7 +85,6 @@ class GridWidget extends StatefulWidget {
 
 class _GridWidgetState extends State<GridWidget> with TickerProviderStateMixin {
   AnimationController _controller;
-  Animation<double> _width, _height;
   Animation<BorderRadius> transformationAnim;
 
   @override
@@ -100,10 +99,7 @@ class _GridWidgetState extends State<GridWidget> with TickerProviderStateMixin {
             begin: BorderRadius.circular(150.0),
             end: BorderRadius.circular(0.0))
         .animate(CurvedAnimation(parent: _controller, curve: Curves.ease));
-    _width = Tween<double>(begin: 150.0, end: 300.0)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.ease));
-    _height = Tween<double>(begin: 150.0, end: 500.0)
-        .animate(CurvedAnimation(parent: _controller, curve: Curves.ease));
+    
   }
 
   @override

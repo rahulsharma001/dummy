@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:keshaa_android/Pages/backdrop.dart';
-import '../Pages/homescreen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override

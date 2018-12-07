@@ -26,13 +26,14 @@ class _ProductGridState extends State<ProductGrid> {
     } else {
       print('Something went wrong');
     }
+    return productList;
   }
 
   @override
-    void initState() {
-      super.initState();
-      _saveTempList=_fetchProductInfo();
-    }
+  void initState() {
+    super.initState();
+    _saveTempList = _fetchProductInfo();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,34 +55,15 @@ class _ProductGridState extends State<ProductGrid> {
 }
 
 class ProductWidget extends StatefulWidget {
-  List<ProductModel> productList;
+  final List<ProductModel> productList;
   ProductWidget({this.productList});
   _ProductWidgetState createState() => _ProductWidgetState();
 }
 
 class _ProductWidgetState extends State<ProductWidget> {
-  Widget _productImage(int index) {
-    return Card(
-      child: Image.network(
-        widget.productList[index].productImage,
-        fit: BoxFit.fitWidth,
-        width: double.infinity,
-        height: 300.0,
-      ),
-    );
-  }
-
-  Widget _productDetails(int index) {
-    return Card(
-      child: ListTile(
-        title: Text('data'),
-      ),
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    double c_width = MediaQuery.of(context).size.width * 0.8;
 
     return GridView.builder(
       gridDelegate:

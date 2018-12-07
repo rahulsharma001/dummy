@@ -2,18 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:keshaa_android/Fragments/gallery.dart';
 import 'package:keshaa_android/Fragments/products.dart';
 import 'package:keshaa_android/Pages/backdrop.dart';
-import 'package:keshaa_android/Pages/panels.dart';
 
 class BackLayer extends StatefulWidget {
-  AnimationController controller;
-  Widget child;
+  final AnimationController controller;
+  final Widget child;
   BackLayer({this.controller, this.child});
 
   _BackLayerState createState() => _BackLayerState();
 }
 
 class _BackLayerState extends State<BackLayer> {
-  var _currentPageIndex;
   List<String> navlist = ['Gallery', 'Products', 'Contact Us'];
   bool get isPanelVisible {
     final AnimationStatus status = widget.controller.status;
@@ -41,10 +39,6 @@ class _BackLayerState extends State<BackLayer> {
             children: <Widget>[
               ListTile(
                 onTap: () {
-                  setState(() {
-                    _currentPageIndex = navlist[index];
-                    print(index);
-                  });
                   switch (index) {
                     case 0:
                       _navigateToFrontLayer(GalleryGrid(),index);
@@ -53,8 +47,7 @@ class _BackLayerState extends State<BackLayer> {
                       _navigateToFrontLayer(ProductGrid(),index);
                       break;
                   }
-                  // PanelClass(frontLayer: About(),);
-                  print(navlist[index].toString());
+                  // print(navlist[index].toString());
 
                   widget.controller.fling(velocity: isPanelVisible ? -1.0 : 1.0);
                 },

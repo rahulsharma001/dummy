@@ -4,7 +4,7 @@ import 'package:keshaa_android/Pages/backlayer.dart';
 import 'package:keshaa_android/Pages/frontlayer.dart';
 
 class PanelClass extends StatefulWidget {
-  Animation controller;
+  final Animation controller;
   final Widget frontLayer;
   final Widget backLayer;
   final String frontLayerText;
@@ -17,12 +17,12 @@ class PanelClass extends StatefulWidget {
 class _PanelClassState extends State<PanelClass> {
   Animation<RelativeRect> getPanelAnimation(BoxConstraints constraints) {
     final height = constraints.biggest.height;
-    final backpanel_height = height - header_height;
-    final frontpanel_height = -header_height;
+    final backPanelHeight = height - header_height;
+    final frontPanelHeight = -header_height;
 
     return RelativeRectTween(
             begin: RelativeRect.fromLTRB(
-                0.0, backpanel_height, 0.0, frontpanel_height),
+                0.0, backPanelHeight, 0.0, frontPanelHeight),
             end: RelativeRect.fromLTRB(0.0, 0.0, 0.0, 0.0))
         .animate(
       CurvedAnimation(parent: widget.controller, curve: Curves.linear),
@@ -73,11 +73,6 @@ class _PanelClassState extends State<PanelClass> {
                         )
                       : Container(),
                   Expanded(
-                    // child: Container(
-                    //   child: Center(
-                    //     child: Text('Worked'),
-                    //   ),
-                    // ),)
                     child: FrontLayer(
                         child: widget.frontLayer == null
                             ? GalleryGrid()
@@ -94,7 +89,6 @@ class _PanelClassState extends State<PanelClass> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 
