@@ -5,6 +5,10 @@ import 'package:keshaa_android/Fragments/products.dart';
 import 'package:keshaa_android/Pages/panels.dart';
 
     class BackDrop extends StatefulWidget {
+      Widget backlayer;
+      Widget frontlayer;
+
+      BackDrop({this.backlayer,this.frontlayer});
      
       _BackDropState createState() => _BackDropState();
     }
@@ -48,7 +52,7 @@ import 'package:keshaa_android/Pages/panels.dart';
               ),
             ),
           ),
-          body: PanelClass(controller: controller,frontLayer: ProductGrid(),),
+          body: PanelClass(controller: controller,frontLayer: widget.frontlayer,backLayer: widget.backlayer,),
         );
       }
     }

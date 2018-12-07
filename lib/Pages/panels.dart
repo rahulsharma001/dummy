@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:keshaa_android/Fragments/gallery.dart';
 import 'package:keshaa_android/Pages/backlayer.dart';
 import 'package:keshaa_android/Pages/frontlayer.dart';
 
@@ -43,8 +44,7 @@ class _PanelClassState extends State<PanelClass> {
               // ),
               child: ExcludeSemantics(
                 child: BackLayer(
-                  controller: widget.controller,
-                ),
+                    controller: widget.controller, child: widget.backLayer),
               )),
           // child0,
           PositionedTransition(
@@ -76,7 +76,10 @@ class _PanelClassState extends State<PanelClass> {
                     //     child: Text('Worked'),
                     //   ),
                     // ),)
-                    child: FrontLayer(child: widget.frontLayer),
+                    child: FrontLayer(
+                        child: widget.frontLayer == null
+                            ? GalleryGrid()
+                            : widget.frontLayer),
                   ),
                 ],
               ),

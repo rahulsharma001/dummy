@@ -1,21 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:keshaa_android/Fragments/gallery.dart';
+import 'package:keshaa_android/Fragments/products.dart';
+import 'package:keshaa_android/Pages/backdrop.dart';
 import 'package:keshaa_android/Pages/panels.dart';
 
 class BackLayer extends StatefulWidget {
   AnimationController controller;
   Widget child;
-  BackLayer({this.controller});
+  BackLayer({this.controller, this.child});
 
   _BackLayerState createState() => _BackLayerState();
 }
 
 class _BackLayerState extends State<BackLayer> {
   var _currentPageIndex;
-  List<String> navlist = ['Home', 'About', 'Contact Us'];
+  List<String> navlist = ['Gallery', 'Products', 'Contact Us'];
   bool get isPanelVisible {
     final AnimationStatus status = widget.controller.status;
     return status == AnimationStatus.completed ||
         status == AnimationStatus.forward;
+  }
+
+  _navigateToFrontLayer(Widget frontlayer) {
+    return Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => BackDrop(frontlayer: frontlayer),
+      ),
+    );
   }
 
   @override
@@ -31,7 +42,16 @@ class _BackLayerState extends State<BackLayer> {
               onTap: () {
                 setState(() {
                   _currentPageIndex = navlist[index];
+                  print(index);
                 });
+                switch (index) {
+                  case 0:
+                    _navigateToFrontLayer(GalleryGrid());
+                    break;
+                  case 1:
+                    _navigateToFrontLayer(ProductGrid());
+                    break;
+                }
                 // PanelClass(frontLayer: About(),);
                 print(navlist[index].toString());
 
