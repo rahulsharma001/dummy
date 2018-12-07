@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:keshaa_android/Pages/frontlayer.dart';
-import 'package:keshaa_android/Pages/panels.dart';
 
 class About extends StatefulWidget {
   _AboutState createState() => _AboutState();

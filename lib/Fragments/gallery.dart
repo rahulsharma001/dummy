@@ -152,20 +152,17 @@ class _GridWidgetState extends State<GridWidget> with TickerProviderStateMixin {
 class CustomLogo extends StatelessWidget {
   final double size;
   final String imageUrl;
-  CustomLogo({this.size = 300.0, this.imageUrl});
+  CustomLogo({this.size = 500.0, this.imageUrl});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context).pop(),
-      child: Padding(
-        padding: const EdgeInsets.all(18.0),
-        child: Image.network(
-          imageUrl,
-          fit: BoxFit.contain,
-          height: size,
-          width: size,
-          alignment: Alignment.center,
-        ),
+      child: Image.network(
+        imageUrl,
+        fit: BoxFit.fill,
+        height: size,
+        width: size,
+        alignment: Alignment.center,
       ),
     );
   }

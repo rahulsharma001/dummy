@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:keshaa_android/Fragments/gallery.dart';
 import 'package:keshaa_android/Fragments/products.dart';
 import 'package:keshaa_android/Pages/backdrop.dart';
+import 'package:keshaa_android/Fragments/contact.dart';
+
 
 class BackLayer extends StatefulWidget {
   final AnimationController controller;
@@ -45,6 +47,9 @@ class _BackLayerState extends State<BackLayer> {
                       break;
                     case 1:
                       _navigateToFrontLayer(ProductGrid(),index);
+                      break;
+                      case 2:
+                      _navigateToFrontLayer(ContactPage(), index);
                       break;
                   }
                   // print(navlist[index].toString());
