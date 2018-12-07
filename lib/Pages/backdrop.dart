@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:keshaa_android/Fragments/about.dart';
 import 'package:keshaa_android/Fragments/gallery.dart';
+import 'package:keshaa_android/Fragments/products.dart';
 import 'package:keshaa_android/Pages/panels.dart';
 
     class BackDrop extends StatefulWidget {
@@ -47,7 +48,7 @@ import 'package:keshaa_android/Pages/panels.dart';
               ),
             ),
           ),
-          body: PanelClass(controller: controller,frontLayer: GalleryGrid(),),
+          body: PanelClass(controller: controller,frontLayer: ProductGrid(),),
         );
       }
     }
