@@ -24,7 +24,7 @@ class _GalleryGridState extends State<GalleryGrid>
     if (response.statusCode == 200) {
       var datas = json.decode(response.body);
       // var datas=body['data'];
-      print(datas.toString());
+      // print(datas.toString());
       lists = (datas as List)
           .map((data) => new GalleryModel.fromJson(data))
           .toList();
@@ -52,9 +52,9 @@ class _GalleryGridState extends State<GalleryGrid>
     return FutureBuilder(
       future: this._fetchPost,
       builder: (context, data) {
-        print('Has error: ${data.hasError}');
-        print('Has data: ${data.hasData}');
-        print('Snapshot data: ${data.data}');
+        // print('Has error: ${data.hasError}');
+        // print('Has data: ${data.hasData}');
+        // print('Snapshot data: ${data.data}');
         switch (data.connectionState) {
           case ConnectionState.none:
 
@@ -120,7 +120,13 @@ class _GridWidgetState extends State<GridWidget> with TickerProviderStateMixin {
           child: Container(
             child: InkWell(
               child: GridTile(
-                  child: Image.network(widget.lists[index].url)),
+                  child:
+                      Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Image.network(widget.lists[index].url)),
+                      )),
               onTap: () {
                 _controller.forward();
                 Navigator.push(
@@ -150,17 +156,20 @@ class _GridWidgetState extends State<GridWidget> with TickerProviderStateMixin {
 class CustomLogo extends StatelessWidget {
   final double size;
   final String imageUrl;
-  CustomLogo({this.size = 500.0, this.imageUrl});
+  CustomLogo({this.size = 300.0, this.imageUrl});
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => Navigator.of(context).pop(),
-      child: Image.network(
-        imageUrl,
-        fit: BoxFit.fill,
-        height: size,
-        width: size,
-        alignment: Alignment.center,
+      child: Padding(
+        padding: const EdgeInsets.all(18.0),
+        child: Image.network(
+          imageUrl,
+          fit: BoxFit.contain,
+          height: size,
+          width: size,
+          alignment: Alignment.center,
+        ),
       ),
     );
   }

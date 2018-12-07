@@ -21,52 +21,54 @@ class _BackLayerState extends State<BackLayer> {
         status == AnimationStatus.forward;
   }
 
-  _navigateToFrontLayer(Widget frontlayer) {
+  _navigateToFrontLayer(Widget frontlayer,int index) {
     return Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (BuildContext context) => BackDrop(frontlayer: frontlayer),
+        builder: (BuildContext context) => BackDrop(frontlayer: frontlayer,frontLayerText: navlist[index],),
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: navlist.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            ListTile(
-              onTap: () {
-                setState(() {
-                  _currentPageIndex = navlist[index];
-                  print(index);
-                });
-                switch (index) {
-                  case 0:
-                    _navigateToFrontLayer(GalleryGrid());
-                    break;
-                  case 1:
-                    _navigateToFrontLayer(ProductGrid());
-                    break;
-                }
-                // PanelClass(frontLayer: About(),);
-                print(navlist[index].toString());
+    return Center(
+      child: ListView.builder(
+        itemCount: navlist.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              ListTile(
+                onTap: () {
+                  setState(() {
+                    _currentPageIndex = navlist[index];
+                    print(index);
+                  });
+                  switch (index) {
+                    case 0:
+                      _navigateToFrontLayer(GalleryGrid(),index);
+                      break;
+                    case 1:
+                      _navigateToFrontLayer(ProductGrid(),index);
+                      break;
+                  }
+                  // PanelClass(frontLayer: About(),);
+                  print(navlist[index].toString());
 
-                widget.controller.fling(velocity: isPanelVisible ? -1.0 : 1.0);
-              },
-              title: Text(
-                navlist[index],
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Colors.black87, fontWeight: FontWeight.bold),
-              ),
-            )
-          ],
-        );
-      },
+                  widget.controller.fling(velocity: isPanelVisible ? -1.0 : 1.0);
+                },
+                title: Text(
+                  navlist[index],
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      color: Color(0xFFDAA520), fontWeight: FontWeight.bold),
+                ),
+              )
+            ],
+          );
+        },
+      ),
     );
   }
 }

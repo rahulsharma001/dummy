@@ -7,7 +7,9 @@ class PanelClass extends StatefulWidget {
   Animation controller;
   final Widget frontLayer;
   final Widget backLayer;
-  PanelClass({this.controller, this.frontLayer, this.backLayer});
+  final String frontLayerText;
+  PanelClass(
+      {this.controller, this.frontLayer, this.backLayer, this.frontLayerText});
 
   _PanelClassState createState() => _PanelClassState();
 }
@@ -32,42 +34,42 @@ class _PanelClassState extends State<PanelClass> {
     return Container(
       child: Stack(
         children: <Widget>[
-          Container(
-              color: Theme.of(context).accentColor,
-              // child: Center(
-              //   child: RaisedButton(
-              //     child: Text('About'),
-              //     onPressed: () {
-              //       TestingClass();
-              //     },
-              //   ),
-              // ),
-              child: ExcludeSemantics(
-                child: BackLayer(
-                    controller: widget.controller, child: widget.backLayer),
-              )),
-          // child0,
+          Center(
+            child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Color(0xFF000000),
+                    Color(0xFF2D3436),
+                  ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
+                ),
+                child: ExcludeSemantics(
+                  child: BackLayer(
+                      controller: widget.controller, child: widget.backLayer),
+                )),
+          ),
           PositionedTransition(
             rect: getPanelAnimation(constraints),
             child:
-                //  Material(
-                //   borderRadius: BorderRadius.only(
-                //     topLeft: Radius.circular(16.0),
-                //     topRight: Radius.circular(16.0),
-                //   ),
                 Material(
-              // elevation: 16.0,
               shape: BeveledRectangleBorder(
                 borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20.0),
-                    topRight: Radius.circular(20.0)),
+                    topLeft: Radius.circular(15.0),
+                    topRight: Radius.circular(15.0)),
               ),
               child: Column(
                 children: <Widget>[
                   widget.controller.isDismissed
                       ? Container(
+                          padding: EdgeInsets.only(top: 8.0),
                           height: header_height,
-                          child: Text('Gallery'),
+                          child: widget.frontLayerText != null
+                              ? Text(widget.frontLayerText,
+                                  style: TextStyle(
+                                      fontSize: 17.0,
+                                      fontWeight: FontWeight.w500))
+                              : Text('Gallery', style: TextStyle(
+                                      fontSize: 17.0,
+                                      fontWeight: FontWeight.w500)),
                         )
                       : Container(),
                   Expanded(

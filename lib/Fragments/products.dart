@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:keshaa_android/Models/productmode.dart';
+import 'package:keshaa_android/Models/productmodel.dart';
 import 'package:keshaa_android/Pages/product_details.dart';
 
 class ProductGrid extends StatefulWidget {
